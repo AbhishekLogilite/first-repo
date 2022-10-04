@@ -19,13 +19,18 @@ public class Records_No {
 		int count = 1;
 		try {
 			Class.forName("org.postgresql.Driver");
+
+			// adding url, user and password
 			c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/test", "postgres", "123456");
 
 			c.setAutoCommit(false);
 
 			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM collegedata;");
 
+			// passing the query and adding it on resultset
+			ResultSet rs = stmt.executeQuery("SELECT * FROM collegedata;");
+			
+			//storing the time in milliseconds
 			long startTime = System.currentTimeMillis();
 			long endTime = 0;
 
@@ -34,18 +39,21 @@ public class Records_No {
 				String name = rs.getString("student_name");
 				String gender = rs.getString("student_gender");
 				String email = rs.getString("student_emailid");
-
+				
+				//fetching the data and storing in the log file
 				logger.info("ID = " + id + " , NAME = " + name + " , GENDER = " + gender + " , EMAIL = " + email);
 				count++;
 			}
 			
 			
 			endTime = System.currentTimeMillis();
+
+			//storing the time in minute and second
 			long minutes = (-1) * ((startTime - endTime) / 1000) / 60;
 			long seconds = (-1) * ((startTime - endTime) / 1000) % 60;
 
 			logger.info("Total Time taken : Minutes -> " + minutes + " and, Second -> " + seconds);
-//			11:19   
+
 			rs.close();
 			stmt.close();
 			c.close();
