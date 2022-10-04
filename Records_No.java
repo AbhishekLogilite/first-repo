@@ -1,5 +1,6 @@
 package com.test;
 
+//import java.util.concurrent.TimeUnit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -37,12 +38,13 @@ public class Records_No {
 				logger.info("ID = " + id + " , NAME = " + name + " , GENDER = " + gender + " , EMAIL = " + email);
 				count++;
 			}
+			
+			
 			endTime = System.currentTimeMillis();
-			long timeneeded = ((startTime - endTime) / 1000);
-			long minutes = (timeneeded / 1000) / 60;
-			long seconds = (timeneeded / 1000) % 60;
+			long minutes = (-1) * ((startTime - endTime) / 1000) / 60;
+			long seconds = (-1) * ((startTime - endTime) / 1000) % 60;
 
-			logger.info("Total Time taken : Minutes -> " + 5 + " and, Second -> " + 25);
+			logger.info("Total Time taken : Minutes -> " + minutes + " and, Second -> " + seconds);
 //			11:19   
 			rs.close();
 			stmt.close();
