@@ -78,6 +78,8 @@ public class starting {
 		try {
 			
 			Class.forName("org.postgresql.Driver");
+
+
 			c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/student", "postgres", "123456");
 
 			c.setAutoCommit(false);
